@@ -6,7 +6,7 @@ import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 const Posts = () => {
 
     const { user } = useContext(AuthContext)
-    console.log(user);
+    // console.log(user);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const imageHostKey = process.env.REACT_APP_imgbb_key;
     // console.log(imageHostKey); 

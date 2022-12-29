@@ -12,6 +12,7 @@ const ShowDetails = () => {
 
     const { name, post, image } = useLoaderData();
 
+    // console.log(posts);
 
     return (
         <div>

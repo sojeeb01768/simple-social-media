@@ -3,10 +3,12 @@ import Main from "../../Layout/Main";
 import Comments from "../../Pages/Comments/Comments";
 import About from "../../Pages/Home/About/About";
 import Home from "../../Pages/Home/Home/Home";
+import ShowPost from "../../Pages/Home/ShowPost/ShowPost";
 import Login from "../../Pages/Login/Login";
 import Media from "../../Pages/Media/Media";
 import ShowDetails from "../../Pages/ShowDetails/ShowDetails";
 import Signup from "../../Pages/Signup/Signup";
+import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 
 
 const router = createBrowserRouter([
@@ -16,11 +18,11 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home></Home>
+                element: <PrivateRoutes><Home></Home></PrivateRoutes>
             },
             {
                 path: '/about',
-                element: <About></About>
+                element: <PrivateRoutes><About></About></PrivateRoutes>
             },
             {
                 path: '/login',
@@ -32,12 +34,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/media',
-                element: <Media></Media>
-            },
-            {
-                path: '/comments/:id',
-                element: <Comments></Comments>,
-                loader: ({ params }) => fetch(`http://localhost:5000/comments/${params.id}`)
+                element: <PrivateRoutes><Media></Media></PrivateRoutes>
             },
             {
                 path: '/showdetails/:id',
