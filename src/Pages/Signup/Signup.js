@@ -31,12 +31,35 @@ const Signup = () => {
                     displayName: data.name
                 }
                 updateUser(userInfo)
+
+                .then(() => {
+                    saveUser(data.name, data.email);
+                })
+                .catch(err => console.log(err))
             })
             .catch(err => {
                 console.error(err)
                 setSignUpError(err.message)
             }
             )
+    }
+
+
+     // Post user data to database
+     const saveUser = (name, email) => {
+        const user = { name, email }
+        fetch('http://localhost:5000/profiles', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                // setCreatedUserEmail(email);
+                // setCreatedUserEmail(email);
+            })
     }
 
 

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { useLoaderData } from 'react-router-dom';
 // import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
@@ -7,10 +8,32 @@ const About = () => {
 
     const { user } = useContext(AuthContext)
     // console.log(user);
-    // const {}=useLoaderData();
+
+    // const {id} = useLoaderData();
+    // console.log(profile.name);
 
     const handleUpdate = data => {
-        console.log(data);
+        // console.log(data);
+
+        const profile = {
+            name: user?.displayName,
+            email: user?.email,
+            university: data.university,
+            address: data.address
+        }
+        // save profile information to the database
+        fetch(`http://localhost:5000/profiles/${user._id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(profile)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+
+            })
     }
 
 
@@ -36,7 +59,7 @@ const About = () => {
                                 <input type='text' {...register("Address")} placeholder="Address" className="input input-bordered input-secondary w-full my-3 rounded-3xl" />
                                 {/* <p>{data}</p> */}
                                 <div className='flex justify-end'>
-                                <input type="submit" className='btn btn-sm btn-primary rounded-2xl mt-5' />
+                                    <input type="submit" className='btn btn-sm btn-primary rounded-2xl mt-5' />
                                 </div>
                             </form>
 

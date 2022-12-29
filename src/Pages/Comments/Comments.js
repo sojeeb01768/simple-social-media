@@ -1,4 +1,3 @@
-import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
@@ -17,17 +16,12 @@ const Comments = () => {
     const { _id } = showDetails;
     // console.log(showDetails);
 
-    // const newComment = useLoaderData();
-    // console.log(newComment);
-
     const { register, handleSubmit } = useForm();
     const { user } = useContext(AuthContext)
 
     const handleComment = data => {
 
-        
-
-        console.log(data.comment);
+        // console.log(data.comment);
         const comment = {
             showDetailsId: _id,
             name: user?.displayName,

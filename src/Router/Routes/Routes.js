@@ -22,7 +22,8 @@ const router = createBrowserRouter([
             },
             {
                 path: '/about',
-                element: <PrivateRoutes><About></About></PrivateRoutes>
+                element: <About></About>
+                // loader: ({ params }) => fetch(`http://localhost:5000/profiles/${params.id}`)
             },
             {
                 path: '/login',
